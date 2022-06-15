@@ -12,4 +12,6 @@ public interface BookService {
     public BookDTO updateBookPrice(BookDTO bookDTO, Long bookId);
     public List<BookDTO> getAllBook();
     public BookDTO getBook(Long bookId);
+
+    public String updateBookAvailableQuantity( Long bookId);
 }
