@@ -2,6 +2,7 @@ package com.mycompany.bookservice.controller;
 
 import com.mycompany.bookservice.dto.BookDTO;
 import com.mycompany.bookservice.service.BookService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+@Slf4j
 @RestController
 @RequestMapping("/api/v1")
 public class BookController {
@@ -25,16 +28,20 @@ public class BookController {
 
     @GetMapping("/books")
     public ResponseEntity<List<BookDTO>> getAllBook(){
+        log.info("Entering method getAllBook in BookController");
         List<BookDTO> books = bookService.getAllBook();
         ResponseEntity<List<BookDTO>> responseEntity = new ResponseEntity<>(books, HttpStatus.OK);
         //responseEntity = ResponseEntity.ok(books);
+        log.info("Exiting method getAllBook in BookController");
         return responseEntity;
     }
 
     @GetMapping("/books/{bookId}")
     public ResponseEntity<BookDTO> getBook(@PathVariable Long bookId){
+        log.info("Entering method getBook in BookController");
         BookDTO bookDTO = bookService.getBook(bookId);
         ResponseEntity<BookDTO> responseEntity = new ResponseEntity<>(bookDTO, HttpStatus.OK);
+        log.info("Exiting method getBook in BookController");
         return responseEntity;
     }
 
